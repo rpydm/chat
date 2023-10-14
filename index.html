@@ -1,1 +1,25 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Results</title>
+</head>
+<body>
+
+  <div id="apiResults"></div>
+
+  <script>
+    const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
+    
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Assuming 'apiResults' is the ID of the div where you want to display the results
+        document.getElementById('apiResults').innerText = JSON.stringify(data, null, 2);
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
+
+</body>
+</html>
