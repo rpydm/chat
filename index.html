@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>Cat Chat</title>
+  <title>Chat, シャ</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -11,8 +11,9 @@
       margin: 0;
       padding: 20px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
     }
 
@@ -77,10 +78,19 @@
     .cat-message {
       background-color: #ffc107;
     }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>Chat'シャ'</h1>
+
+  <h1>Chat(シャ)</h1>
+
   <div id="chatContainer">
     <div id="chatMessages"></div>
     <input type="text" id="userInput" placeholder="Type your message..." onkeydown="sendMessage(event)">
