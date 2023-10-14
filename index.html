@@ -3,22 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Results</title>
+  <title>Cat Chat</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #chatContainer {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #chatMessages {
+      flex-grow: 1;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    #userInput {
+      width: calc(100% - 20px);
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 0 0 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .message {
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+    }
+
+    .user-message {
+      background-color: #e0f7fa;
+    }
+
+    .cat-message {
+      background-color: #ffc107;
+    }
+  </style>
 </head>
 <body>
 
-  <div id="apiResults"></div>
+  <div id="chatContainer">
+    <div id="chatMessages"></div>
+    <input type="text" id="userInput" placeholder="Type your message..." onkeydown="sendMessage(event)">
+    <button onclick="sendMessage()">Send</button>
+  </div>
 
   <script>
-    const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
-    
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        // Assuming 'apiResults' is the ID of the div where you want to display the results
-        document.getElementById('apiResults').innerText = JSON.stringify(data, null, 2);
-      })
-      .catch(error => console.error('Error:', error));
+    const chatMessagesElement = document.getElementById('chatMessages');
+    const userInputElement = document.getElementById('userInput');
+
+    const catResponses = [
+      'Meow!',
+      'Purr...',
+      'Mrow!',
+      'Hiss!',
+      'Chirp!',
+      'Yowl!'
+    ];
+
+    function getRandomCatResponse() {
+      const randomIndex = Math.floor(Math.random() * catResponses.length);
+      return catResponses[randomIndex];
+    }
+
+    function appendMessage(sender, message, isUser = false) {
+      const messageElement = document.createElement('div');
+      const className = isUser ? 'user-message' : 'cat-message';
+      messageElement.classList.add('message', className);
+      messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+      chatMessagesElement.appendChild(messageElement);
+
+      // Scroll to the bottom of the chat container
+      chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
+    }
+
+    function sendMessage(event) {
+      if (!event || event.key === 'Enter') {
+        const userMessage = userInputElement.value;
+        if (userMessage.trim() === '') return;
+
+        appendMessage('You', userMessage, true);
+        const catResponse = getRandomCatResponse();
+        appendMessage('Cat', catResponse);
+
+        userInputElement.value = '';
+      }
+    }
   </script>
 
 </body>
