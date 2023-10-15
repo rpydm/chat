@@ -15,16 +15,26 @@
       return catResponses[randomIndex];
     }
 
-    function appendMessage(sender, message, isUser = false) {
-      const messageElement = document.createElement('div');
-      const className = isUser ? 'user-message' : 'cat-message';
-      messageElement.classList.add('message', className);
-      messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-      chatMessagesElement.appendChild(messageElement);
+function appendMessage(sender, message, isUser = false, imagePath = null) {
+  const messageElement = document.createElement('div');
+  const className = isUser ? 'user-message' : 'cat-message';
+  const iconClass = isUser ? 'user-icon' : 'cat-icon';
+  messageElement.classList.add('message', className, 'speech-bubble');
+  
+  let messageContent = `<span class="${iconClass}"></span><strong>${sender}:</strong>`;
+  
+  if (imagePath) {
+    messageContent += `<br><img src="${imagePath}" alt="Attached Image">`;
+  }
+  
+  messageContent += ` ${message}`;
+  
+  messageElement.innerHTML = messageContent;
+  chatMessagesElement.appendChild(messageElement);
 
-      // Scroll to the bottom of the chat container
-      chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
-    }
+  // Scroll to the bottom of the chat container
+  chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
+}
 
     function simulateCatTyping() {
       chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
