@@ -3,105 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="src/css/style.css">
   <title>Chat, シャ</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9639808881873132"
      crossorigin="anonymous"></script>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    #chatContainer {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      width: 400px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    #chatMessages {
-      flex-grow: 1;
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      height: 300px;
-      overflow-y: auto;
-    }
-
-    #userInput {
-      width: calc(100% - 20px);
-      padding: 10px;
-      box-sizing: border-box;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin: 0 0 10px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #4caf50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    .message {
-      margin-bottom: 10px;
-      padding: 8px;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-    }
-
-    .user-message {
-      background-color: #e0f7fa;
-    }
-
-    .cat-message {
-      background-color: #ffc107;
-    }
-
-    .blinking-dots {
-      animation: blink 1s infinite;
-      display: inline-block;
-    }
-
-    @keyframes blink {
-      0%, 20%, 50%, 80%, 100% {
-        opacity: 1;
-      }
-      40%, 60% {
-        opacity: 0;
-      }
-    }
-
-    h1 {
-      color: #333;
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-  </style>
 </head>
 <body>
 
@@ -113,68 +18,7 @@
     <button onclick="sendMessage()">Send</button>
   </div>
 
-  <script>
-    const chatMessagesElement = document.getElementById('chatMessages');
-    const userInputElement = document.getElementById('userInput');
-
-    const catResponses = [
-      'Meow!',
-      'Purr...',
-      'Mrow!',
-      'Hiss!',
-      'Chirp!',
-      'Yowl!'
-    ];
-
-    function getRandomCatResponse() {
-      const randomIndex = Math.floor(Math.random() * catResponses.length);
-      return catResponses[randomIndex];
-    }
-
-    function appendMessage(sender, message, isUser = false) {
-      const messageElement = document.createElement('div');
-      const className = isUser ? 'user-message' : 'cat-message';
-      messageElement.classList.add('message', className);
-      messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-      chatMessagesElement.appendChild(messageElement);
-
-      // Scroll to the bottom of the chat container
-      chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
-    }
-
-    function simulateCatTyping() {
-      chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
-      return new Promise(resolve => {
-        // Simulating a delay of 2 seconds (adjust as needed)
-        setTimeout(() => {
-          resolve();
-        }, 2000);
-      });
-    }
-
-    async function sendMessage(event) {
-      if (!event || event.key === 'Enter') {
-        const userMessage = userInputElement.value;
-        if (userMessage.trim() === '') return;
-
-        appendMessage('You', userMessage, true);
-
-        // Simulate cat typing with blinking dots
-        const dotsElement = document.createElement('span');
-        dotsElement.classList.add('blinking-dots');
-        dotsElement.textContent = '...';
-        chatMessagesElement.appendChild(dotsElement);
-　　　　userInputElement.value = '';
-
-        await simulateCatTyping();
-
-        // Remove blinking dots and display cat's response
-        chatMessagesElement.removeChild(dotsElement);
-        const catResponse = getRandomCatResponse();
-        appendMessage('Cat', catResponse);
-      }
-    }
-  </script>
+  <script src="src/js/scripts.js"></script>
 
 </body>
 </html>
