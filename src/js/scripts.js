@@ -1,8 +1,8 @@
 const chatMessagesElement = document.getElementById('chatMessages');
 const userInputElement = document.getElementById('userInput');
 
-const catIconImgPath = '/src/img/alexander-london-mJaD10XeD7w-unsplash.jpg';
-const userIconImgPath = '/src/img/ben-sweet-2LowviVHZ-E-unsplash.jpg';
+const catIconImgPath = 'src/img/alexander-london-mJaD10XeD7w-unsplash.jpg';
+const userIconImgPath = 'src/img/ben-sweet-2LowviVHZ-E-unsplash.jpg';
 
 const catResponses = [
   'Meow!',
