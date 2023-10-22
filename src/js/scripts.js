@@ -21,17 +21,19 @@ function getRandomCatResponse() {
 function appendMessage(sender, message, isUser = false, imagePath = null) {
   const messageElement = document.createElement('div');
   const className = isUser ? 'user-message' : 'cat-message';
-  const iconSrc = isUser ? userIconImgPath : catIconImgPath;
-
   messageElement.classList.add('message', className);
 
-  let messageContent = `<img src="${iconSrc}" alt="Icon Image" class="icon"><strong>${sender}:</strong>`;
+  let messageContent = '';
+  if (!isUser) {
+    const iconSrc = isUser ? userIconImgPath : catIconImgPath;
+    messageContent = `<img src="${iconSrc}" alt="Icon Image" class="icon">`;
+  }
 
   if (imagePath) {
     messageContent += `<br><img src="${imagePath}" alt="Attached Image">`;
   }
 
-  messageContent += ` ${message}`;
+  messageContent += `<span class="message-content"> ${message}</span>`;
   
   messageElement.innerHTML = messageContent;
   chatMessagesElement.appendChild(messageElement);
@@ -62,7 +64,7 @@ async function sendMessage(event) {
     dotsElement.classList.add('blinking-dots');
     dotsElement.textContent = '...';
     chatMessagesElement.appendChild(dotsElement);
-　　userInputElement.value = '';
+    userInputElement.value = '';
 
     await simulateCatTyping();
 
