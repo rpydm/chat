@@ -1,4 +1,5 @@
 const chatMessagesElement = document.getElementById('chatMessages');
+const sendButton = document.getElementById('sendButton');
 const userInputElement = document.getElementById('userInput');
 
 const catIconImgPath = 'src/img/alexander-london-mJaD10XeD7w-unsplash.jpg';
@@ -52,12 +53,27 @@ function simulateCatTyping() {
   });
 }
 
+function checkInput() {
+    if (userInputElement.value.trim() !== '') {
+	sendButton.disabled = false;
+	sendButton.style.opacity = 1;
+	sendButton.style.pointerEvents = 'auto';
+    } else {
+	sendButton.disabled = true;
+	sendButton.style.opacity = 0.5;
+	sendButton.style.pointerEvents = 'none';
+    }
+}
+
 async function sendMessage(event) {
   if (!event || event.key === 'Enter') {
     const userMessage = userInputElement.value;
     if (userMessage.trim() === '') return;
 
     appendMessage('You', userMessage, true);
+    sendButton.disabled = true;
+    sendButton.style.opacity = 0.5;
+    sendButton.style.pointerEvents = 'none';
 
     // Simulate cat typing with blinking dots
     const dotsElement = document.createElement('span');
@@ -65,7 +81,6 @@ async function sendMessage(event) {
     dotsElement.textContent = '...';
     chatMessagesElement.appendChild(dotsElement);
     userInputElement.value = '';
-
     await simulateCatTyping();
 
     // Remove blinking dots and display cat's response
