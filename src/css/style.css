@@ -28,7 +28,7 @@ body {
 
 #chatContainer {
   background-color: #fff;
-  padding: 20px;
+  /* padding: 20px; */
   /* border-radius: 16px; */
   /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
   width: 100%;
@@ -48,16 +48,21 @@ body {
 }
 
 .user-input {
-  display: flex;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 #userInput {
-  width: calc(100% - 40px);
+    width: 90%;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 16px;
-  margin-right: 10px;
+  margin: 20px 0 20px 10px;
 }
 
 #sendButton {
@@ -69,7 +74,9 @@ body {
   cursor: pointer;
   pointer-events: none;
   opacity: 0.5;
+  height: 40px;
   /* transition: background-color 0.3s ease; */
+  margin: 0 10px;
 }
 
 .message {
@@ -96,10 +103,6 @@ body {
 
 .user-message {
   justify-content: flex-end;
-}
-
-.cat-message {
-
 }
 
 .blinking-dots {
