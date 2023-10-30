@@ -1,0 +1,29 @@
+<h1>Hello Cat</h1>
+// HTML
+<input type="file" id="csvFileInput" />
+
+// JavaScript
+document.getElementById('csvFileInput').addEventListener('change', function (event) {
+    const fileInput = event.target;
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const csvContent = e.target.result;
+            // Now you can parse and process the CSV content
+            processData(csvContent);
+        };
+        reader.readAsText(file);
+    }
+});
+
+function processData(csvContent) {
+    // Parse and process the CSV content
+    const rows = csvContent.split('\n');
+    for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i].split(',');
+        // Process each column
+    }
+}
+

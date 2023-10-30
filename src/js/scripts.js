@@ -27,7 +27,7 @@ function appendMessage(sender, message, isUser = false, imagePath = null) {
   let messageContent = '';
   if (!isUser) {
     const iconSrc = isUser ? userIconImgPath : catIconImgPath;
-    messageContent = `<img src="${iconSrc}" alt="Icon Image" class="icon">`;
+    messageContent = `<a href="pages/cat_detail.html"><img src="${iconSrc}" alt="Icon Image" class="icon"></a>`;
   }
 
   if (imagePath) {
