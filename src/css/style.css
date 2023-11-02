@@ -10,28 +10,29 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
+    z-index: 1;
 }
 
 .title {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
-    font-size: 42px;
+    font-size: 80px;
     color: #3498db;
-    tansform: translate(-50%, -50%);
+    /* tansform: translate(-50%, -50%); */
     opacity: 0.4;
 }
 
 #chatContainer {
     background-color: #fff;
-    width: 100%;
+    max-width: 1048px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    margin: 0 auto;
+    max-height: 94vh;
 }
 
 #chatMessages {
-    flex-grow: 1;
     padding: 10px;
     border: none;
     border-radius: 16px;
@@ -39,24 +40,25 @@ body {
 }
 
 .user-input {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    background: #fff;
+    max-width: 1080px;
     width: 100%;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    background: #fff;   
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    height: 10vh;
+    z-index: 3;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
 }
 
 #userInput {
-    width: 90%;
+    width: 100%;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 16px;
-    margin: 20px 0 20px 10px;
+    margin: 15px 0 15px 10px;
 }
 
 #sendButton {
@@ -92,7 +94,8 @@ body {
 }
 
 .user-message .message-content {
-    background-color: #e0f7fa;  
+    background-color: #e0f7fa;
+    z-index: 2;
 }
 
 .user-message {

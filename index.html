@@ -12,15 +12,18 @@
 </head>
 <body>
   <div id="chatContainer">
-    <div class="background-container">
-      <div class="title">Chat</div>
-    </div>
-    <div id="message"></div>
+
+    <!-- div id="message"></div -->
     <div id="chatMessages"></div>
     <div class="user-input">
       <input type="text" id="userInput" placeholder="Type your message..." oninput="checkInput()" onkeydown="sendMessage(event)">
       <button id="sendButton" onclick="sendMessage()"><i class="fas fa-paper-plane fa-2x send-icon"></i></button>
     </div>
+
+    <div class="background-container">
+      <div class="title">Chat</div>
+    </div>
+
   </div>
 
   <script src="src/js/scripts.js"></script>
