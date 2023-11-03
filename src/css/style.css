@@ -2,6 +2,8 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow: hidden;
     align-items: center;
     justify-content: center;
 }
@@ -29,7 +31,8 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    max-height: 94vh;
+    max-height: calc(100vh - 20px);
+    overflow-y: auto;
 }
 
 #chatMessages {
@@ -45,10 +48,13 @@ body {
     display: flex;
     position: fixed;
     bottom: 0;
-    background: #fff;   
+    background: #fff;
+    padding: 10px;
+    box-sizing: border-box;
     justify-content: center;
     align-items: center;
     z-index: 3;
+    height: 8vh;
     /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
 }
 
